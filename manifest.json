@@ -17,6 +17,16 @@
       "48": "images/icon/48x48.png",
       "16": "images/icon/16x16.png"
    },
-   "permissions": [],
+   "permissions": [
+     "tabs", 
+     "<all_urls>", 
+     "contextMenus", 
+     "webRequest", 
+     "webRequestBlocking", 
+     "webNavigation", 
+     "storage", 
+     "unlimitedStorage", 
+     "notifications"
+   ],
    "version": "0.1"
 }

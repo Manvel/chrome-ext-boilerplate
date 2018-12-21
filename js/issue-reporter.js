@@ -29,34 +29,56 @@
     "windows.update"
  */
 
+ function getTabId()
+ {
+   return parseInt(location.search.replace(/^\?/, ""), 10);
+ }
+
  const datas = [
   {
     api: "tabs.create",
-    arg: {'active': false, 'url': 'http://google.com'}
+    args: [{'active': false, 'url': 'http://google.com'}]
   },
   {
     api: "tabs.get",
-    arg: parseInt(location.search.replace(/^\?/, ""), 10)
+    args: [getTabId()]
+  },
+  {
+    api: "tabs.getCurrent",
+    args: []
+  },
+  {
+    api: "tabs.query",
+    args: [{active: true}]
+  },
+  {
+    api: "tabs.reload",
+    args: [getTabId()]
+  },
+  {
+    api: "tabs.sendMessage",
+    args: [getTabId(), {greeting: "greeting"}]
   }
 ];
 const reports = [];
 const promises = [];
 
-function apiTest(api, arg)
+function apiTest(api, args)
 {
   const [apiName, method] = api.split(".");
-  return Promise.all([browser[apiName][method](arg)]).then(() =>
+  return Promise.all([browser[apiName][method](...args)]).then(() =>
   {
     reports.push({api, result: "success"});
-  }).catch(() =>
+  }).catch((err) =>
   {
+    console.log(err);
     reports.push({api, result: "failed"});
   });
 }
 
-for (const {api, arg} of datas)
+for (const {api, args} of datas)
 {
-  promises.push(apiTest(api, arg));
+  promises.push(apiTest(api, args));
 }
 
 Promise.all(promises).then(() =>
