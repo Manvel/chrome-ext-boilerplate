@@ -32,7 +32,6 @@
     "storage.local.remove",
     "storage.local.set",
     "storage.managed.get",
-    "tabs.create",
     "tabs.executeScript",
     "tabs.get",
     "tabs.getCurrent",
@@ -223,8 +222,8 @@
     if (typeof browser == "undefined")
       window.browser = chrome;
 
-  //  for (let api of asyncAPIs)
-    //  wrapAsyncAPI(api);
+    for (let api of asyncAPIs)
+      wrapAsyncAPI(api);
 
     wrapRuntimeOnMessage();
   }
