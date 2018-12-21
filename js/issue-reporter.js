@@ -4,8 +4,8 @@ function getPromise()
 }
 Promise.all([getPromise()]).then(() =>
 {
-  console.log('ready');
+  document.querySelector("#result").textContent = "ready";
 }).catch(()=>
 {
-  console.log('error');
+  document.querySelector("#result").textContent = "error";
 });
