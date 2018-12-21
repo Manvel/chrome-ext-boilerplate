@@ -33,6 +33,10 @@
   {
     api: "tabs.create",
     arg: {'active': false, 'url': 'http://google.com'}
+  },
+  {
+    api: "tabs.get",
+    arg: parseInt(location.search.replace(/^\?/, ""), 10)
   }
 ];
 const reports = [];
@@ -60,7 +64,7 @@ Promise.all(promises).then(() =>
   const result = reports.reduce((acc, report) => 
   {
     const {api, result} = report;
-    return acc += `${api}: ${result}\n`;
+    return acc += `${api}: ${result}<br>`;
   }, "");
-  document.querySelector("#result").textContent = result;
+  document.querySelector("#result").innerHTML = result;
 });
