@@ -223,8 +223,8 @@
     if (typeof browser == "undefined")
       window.browser = chrome;
 
-    for (let api of asyncAPIs)
-      wrapAsyncAPI(api);
+  //  for (let api of asyncAPIs)
+    //  wrapAsyncAPI(api);
 
     wrapRuntimeOnMessage();
   }
