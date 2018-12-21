@@ -54,10 +54,6 @@
   {
     api: "tabs.reload",
     args: [getTabId()]
-  },
-  {
-    api: "tabs.sendMessage",
-    args: [getTabId(), {greeting: "greeting"}]
   }
 ];
 const reports = [];
