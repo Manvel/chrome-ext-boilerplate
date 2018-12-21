@@ -10,6 +10,6 @@ function reportIssue(tab)
   );
 }
 
-$("#issue-reporter").addEventListener(
+document.querySelector("#issue-reporter").addEventListener(
   "click", () => reportIssue(tab)
 );
