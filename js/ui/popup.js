@@ -1,8 +1,18 @@
-let browser = window.browser;
+function getBrowser() {
+  if (typeof chrome !== "undefined") {
+    if (typeof browser !== "undefined") {
+      return "Firefox";
+    } else {
+      return "Chrome";
+    }
+  } else {
+    return "Edge";
+  }
+}
 
-if ("chrome" in window)
+if (getBrowser() == "Chrome")
 {
-  browser = window.chrome;
+  window.browser = window.chrome;
 }
 
 const getTab = new Promise(
