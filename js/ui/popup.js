@@ -1,3 +1,16 @@
+const getTab = new Promise(
+  resolve =>
+  {
+    document.addEventListener("DOMContentLoaded", () =>
+    {
+      browser.tabs.query({active: true, lastFocusedWindow: true}, tabs =>
+      {
+        resolve({id: tabs[0].id, url: tabs[0].url});
+      });
+    });
+  }
+);
+
 function reportIssue(tab)
 {
   browser.tabs.create({
@@ -11,5 +24,10 @@ function reportIssue(tab)
 }
 
 document.querySelector("#issue-reporter").addEventListener(
-  "click", () => reportIssue(tab)
+  "click", () => {
+    getTab().then((tab) => 
+    {
+      reportIssue(tab)
+    });
+  }
 );
